@@ -21,3 +21,17 @@ library_path: '/tmp/%g/%A/%n-%t.%e'
 # when your library_path isn't the actual media (like a usb stick) you will be
 # playing your music from.
 symlink_for_copy: false
+
+# Rsync settings
+rsync:
+  destination: '/path/to/media'
+  options:
+    - '--recursive'
+    - '--copy-links'
+    - '--dry-run'
+    - '--delete'
+    - '--stats'
+    - '--size-only'
+    - '--verbose'
+  exclusions:
+    - '.DS_Store'

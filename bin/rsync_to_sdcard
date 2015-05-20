@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+require 'shellwords'
+require File.join(File.dirname(__FILE__), "../lib/itunes-playlist-to-usb")
+
+playlist = PL2USB::Playlist.new(SETTINGS["playlist"])
+source = Shellwords.escape(PL2USB::FileManager.new(playlist).library)
+destination = Shellwords.escape(SETTINGS["rsync"]["destination"])
+options = SETTINGS["rsync"]["options"].join(' ')
+exclusions = SETTINGS["rsync"]["options"]
+exclusions = SETTINGS["rsync"]["exclusions"].map { |e| "--exclude='#{e}'" }.join(' ')
+
+command = "rsync #{options} #{exclusions} #{source} #{destination}"
+system(command)
