@@ -28,7 +28,6 @@ rsync:
   options:
     - '--recursive'
     - '--copy-links'
-    - '--dry-run'
     - '--delete'
     - '--stats'
     - '--size-only'
